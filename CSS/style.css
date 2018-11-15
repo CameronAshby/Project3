@@ -3,6 +3,7 @@ html {
     padding: 0;
     width: 100%;
     height: 100%;
+    font-family: 'Merriweather', serif;
 }
 
 body {
@@ -16,4 +17,55 @@ body {
     width: 100%;
     height: 100%;
     background-image: url("../IMG/golfCourseBackground.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuContainer {
+    width: 500px;
+    height: 200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    background-color: white;
+    border-radius: 20px;
+}
+
+.title{
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: #556B2F;
+    font-size: 36px;
+    font-style: italic;
+}
+
+.subTitle {
+    font-size: 16px;
+
+}
+
+#startButton {
+    width: 30%;
+    padding: 10px 0;
+    border: 1px solid #556B2F;
+    border-radius: 20px;
+}
+
+.setupContainer {
+    display: none;
+}
+
+.gameContainer {
+    display: none;
+}
+
+.column {
+    width: 50px;
 }

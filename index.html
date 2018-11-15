@@ -4,13 +4,31 @@
     <meta charset="UTF-8">
     <title>Golf Score Card</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
     <link href="CSS/style.css" rel="stylesheet">
+    <link href="CSS/mobileStyle.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="JS/main.js" defer></script>
 </head>
 <body>
     <div class="mainContainer">
-        
+        <div class="menuContainer">
+            <div class="title">
+                Welcome!
+                <div class="subTitle">
+                    Mobile Friendly Golfing App
+                </div>
+            </div>
+            <button id="startButton" onclick="loadObject()">Let's Play</button>
+        </div>
+        <div class="setupContainer">
+            <button onclick="buildCard()">Begin Game</button>
+            Choose Player Num
+            Choose Hole Count
+        </div>
+        <div class="gameContainer">
+
+        </div>
     </div>
 </body>
 </html>
