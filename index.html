@@ -23,12 +23,42 @@
             <button id="startButton" onclick="loadObject()">Let's Play</button>
         </div>
         <div class="setupContainer">
-            <select id="selectCourse">
-                <option>Select Your Course</option>
-            </select>
-            <select id="selectPlayerNum">
-                <option>Select How Many Players</option>
-            </select>
+            <div class="setupTitle">
+                Game Creation
+            </div>
+            <div class="selectContainer">
+                <div class="selectTitle">
+                    Course:
+                </div>
+                <select id="selectCourse" onchange="loadCourse(this.value)">
+                    <option>Select Course</option>
+                </select>
+            </div>
+            <div id="playerSelect">
+                <div class="selectContainer">
+                    <div class="selectTitle">
+                        Players:
+                    </div>
+                    <select id="selectPlayerNum" onchange="getNames(this.value)">
+                        <option>Select Players</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+                <div class="playerNameContainer">
+
+                </div>
+            </div>
+            <div class="selectContainer">
+                <div class="selectTitle">
+                    Tee:
+                </div>
+                <select id="selectTee">
+                    <option>Select Tee</option>
+                </select>
+            </div>
             <button id="gameButton" onclick="buildCard()">Begin Game</button>
         </div>
         <div class="gameContainer">

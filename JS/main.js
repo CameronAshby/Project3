@@ -13,9 +13,12 @@ function loadObject() {
             courseCollection = JSON.parse(this.responseText);
             console.log(courseCollection);
 
-            loadCourse(courseCollection.courses[0].id);
-            loadCourse(courseCollection.courses[1].id);
-            loadCourse(courseCollection.courses[2].id);
+            for (let i = 0; i < courseCollection.courses.length; i++) {
+                $('#selectCourse').append('<option value="' + courseCollection.courses[i].id + '">' + courseCollection.courses[i].name + '</option>')
+            }
+            // loadCourse(courseCollection.courses[0].id);
+            // loadCourse(courseCollection.courses[1].id);
+            // loadCourse(courseCollection.courses[2].id);
         }
     };
     xhttp.open('GET', 'https://golf-courses-api.herokuapp.com/courses', true);
@@ -53,5 +56,12 @@ function addHoles() {
         for(let h = 1; h <= numHoles; h++) {
             $('#col' + h).append('<input class="hole" type="text" id="p' + p + 'h' + h + '">');
         }
+    }
+}
+
+function getNames(playerNum) {
+    $('.playerNameContainer').html('');
+    for (let i = 1; i <= playerNum; i++) {
+        $('.playerNameContainer').append(`<input class="player" id="player${i}" type="text">`);
     }
 }
