@@ -1,7 +1,9 @@
 let courseCollection;
 
-let numPlayers = 4;
-let numHoles = 18;
+let numPlayers;
+let teeSelection;
+
+let modalId;
 
 function loadObject() {
     $('.menuContainer').css('display', 'none');
@@ -16,9 +18,6 @@ function loadObject() {
             for (let i = 0; i < courseCollection.courses.length; i++) {
                 $('#selectCourse').append('<option value="' + courseCollection.courses[i].id + '">' + courseCollection.courses[i].name + '</option>')
             }
-            // loadCourse(courseCollection.courses[0].id);
-            // loadCourse(courseCollection.courses[1].id);
-            // loadCourse(courseCollection.courses[2].id);
         }
     };
     xhttp.open('GET', 'https://golf-courses-api.herokuapp.com/courses', true);
@@ -51,13 +50,15 @@ function loadTee() {
     }
 }
 
+function setTee(tee) {
+    teeSelection = tee;
+}
+
 function buildCard() {
     $('.gameContainer').css('display', 'flex');
     $('.setupContainer').css('display', 'none');
-    for(let i = 1; i <= numHoles; i++) {
-        $('.gameContainer').append('<div id="col' + i +'" class="column">' + i + '</div>')
-    }
-    addHoles();
+
+    $('.gameContainer').html(`<div class="hole"></div>`);
 }
 
 function addHoles() {
@@ -71,6 +72,34 @@ function addHoles() {
 function getNames(playerNum) {
     $('.playerNameContainer').html('');
     for (let i = 1; i <= playerNum; i++) {
-        $('.playerNameContainer').append(`<input class="player" id="player${i}" type="text">`);
+        $('.playerNameContainer').append(`<input onchange="checkName(this.value)" class="player" id="player${i}" type="text">`);
     }
+}
+
+function checkName(name) {
+    console.log('checkName');
+
+    let pushElement;
+    let nameArray = [];
+
+    for(let i = 1; i <= numPlayers; i++) {
+        pushElement = $(`#player${i}`).val();
+        nameArray.push(pushElement);
+    }
+}
+
+function checkNumber(number, thisId) {
+    if(typeof number != 'number') {
+        modalId = thisId;
+        displayModal();
+    }
+}
+
+function displayModal() {
+    $('.numberModal').css('display', 'flex');
+}
+
+function clearModal() {
+    $('.numberModal').css('display', 'none');
+    $(`#${modalId}`).val('');
 }

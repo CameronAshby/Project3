@@ -55,15 +55,23 @@
                 <div class="selectTitle">
                     Tee:
                 </div>
-                <select id="selectTee">
+                <select id="selectTee" onchange="setTee(this.value)">
                     <option>Select Tee</option>
                 </select>
             </div>
-            <button id="gameButton" onclick="buildCard()">Begin Game</button>
+            <button id="gameButton" onclick="buildCard()">Fore!</button>
         </div>
         <div class="gameContainer">
 
         </div>
+
+        <div class="numberModal">
+            <div class="modalMessage">
+                Invalid Input. Please Re-enter
+            </div>
+            <button class="modalButton" onclick="clearModal()">Ok</button>
+        </div>
+
     </div>
 </body>
 </html>
