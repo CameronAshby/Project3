@@ -22,7 +22,7 @@ body {
     align-items: center;
 }
 
-.menuContainer {
+.menuContainer, .setupContainer {
     width: 500px;
     height: 200px;
     margin: 0 auto;
@@ -41,21 +41,28 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    color: #556B2F;
+    color: #254535;
     font-size: 36px;
     font-style: italic;
 }
 
 .subTitle {
     font-size: 16px;
-
+    color: #556B2F;
 }
 
-#startButton {
+#startButton, #gameButton {
     width: 30%;
+    color: white;
+    background-color: #254535;
     padding: 10px 0;
     border: 1px solid #556B2F;
     border-radius: 20px;
+    font-size: 14px;
+}
+
+#startButton:hover, #gameButton:hover {
+    cursor: pointer;
 }
 
 .setupContainer {

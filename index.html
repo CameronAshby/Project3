@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Golf Score Card</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
     <link href="CSS/style.css" rel="stylesheet">
     <link href="CSS/mobileStyle.css" rel="stylesheet">
@@ -22,9 +23,13 @@
             <button id="startButton" onclick="loadObject()">Let's Play</button>
         </div>
         <div class="setupContainer">
-            <button onclick="buildCard()">Begin Game</button>
-            Choose Player Num
-            Choose Hole Count
+            <select id="selectCourse">
+                <option>Select Your Course</option>
+            </select>
+            <select id="selectPlayerNum">
+                <option>Select How Many Players</option>
+            </select>
+            <button id="gameButton" onclick="buildCard()">Begin Game</button>
         </div>
         <div class="gameContainer">
 
