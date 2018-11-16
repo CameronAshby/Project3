@@ -58,7 +58,9 @@ function buildCard() {
     $('.gameContainer').css('display', 'flex');
     $('.setupContainer').css('display', 'none');
 
-    $('.gameContainer').html(`<div class="hole"></div>`);
+    for(let i = 1; i <= 18; i++) {
+        $('.gameContainer').append(`<div class="hole">${i}</div>`);
+    }
 }
 
 function addHoles() {
@@ -78,14 +80,6 @@ function getNames(playerNum) {
 
 function checkName(name) {
     console.log('checkName');
-
-    let pushElement;
-    let nameArray = [];
-
-    for(let i = 1; i <= numPlayers; i++) {
-        pushElement = $(`#player${i}`).val();
-        nameArray.push(pushElement);
-    }
 }
 
 function checkNumber(number, thisId) {
