@@ -106,10 +106,11 @@ body {
 }
 
 .holeContainer, .yardContainer, .parContainer, .hcpContainer {
+    margin-bottom: 5px;
     display: flex;
-    /*justify-content: space-evenly;*/
     width: 98%;
     border: 1px solid #254535;
+    border-radius: 4px;
     font-size: 12px;
 }
 
@@ -133,5 +134,8 @@ body {
 
 .cardTitle, .in, .out, .total, .hole, .yard, .par, .hcp {
     width: 5%;
-    border: 1px solid #254535;
+}
+
+.in, .out, .total, .hole, .yard, .par, .hcp{
+    border-left: 1px solid #254535;
 }
