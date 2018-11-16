@@ -60,6 +60,8 @@ function buildCard() {
 
     buildHole();
     buildYard();
+    buildPar();
+    buildHcp();
 }
 
 function buildHole() {
@@ -80,12 +82,40 @@ function buildYard() {
     for(let i = 0; i < 18; i++) {
         $('.yardContainer').append(`<div id="yard${i}" class="yard">${myCourse.data.holes[i].teeBoxes[teeSelection].yards}</div>`);
 
-        if(i == 9) {
-            $('.yardContainer').append(`<div class="out">Out</div>`);
+        if(i == 8) {
+            $('.yardContainer').append(`<div class="out"></div>`);
         }
         if(i == 17) {
-            $('.yardContainer').append(`<div class="in">In</div>`);
-            $('.yardContainer').append(`<div class="total">Total</div>`);
+            $('.yardContainer').append(`<div class="in"></div>`);
+            $('.yardContainer').append(`<div class="total"></div>`);
+        }
+    }
+}
+
+function buildPar() {
+    for(let i = 0; i < 18; i++) {
+        $('.parContainer').append(`<div id="yard${i}" class="yard">${myCourse.data.holes[i].teeBoxes[teeSelection].par}</div>`);
+
+        if(i == 8) {
+            $('.parContainer').append(`<div class="out"></div>`);
+        }
+        if(i == 17) {
+            $('.parContainer').append(`<div class="in"></div>`);
+            $('.parContainer').append(`<div class="total"></div>`);
+        }
+    }
+}
+
+function buildHcp() {
+    for (let i = 0; i < 18; i++) {
+        $('.hcpContainer').append(`<div id="yard${i}" class="yard">${myCourse.data.holes[i].teeBoxes[teeSelection].hcp}</div>`);
+
+        if (i == 8) {
+            $('.hcpContainer').append(`<div class="out"></div>`);
+        }
+        if (i == 17) {
+            $('.hcpContainer').append(`<div class="in"></div>`);
+            $('.hcpContainer').append(`<div class="total"></div>`);
         }
     }
 }

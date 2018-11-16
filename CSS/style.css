@@ -102,15 +102,12 @@ body {
     justify-content: center;
     height: 70%;
     color: #556B2F;
+    text-align: center;
 }
 
-.hole, .yard, .in, .out, .total {
-    font-size: 12px;
-}
-
-.holeContainer, .yardContainer {
+.holeContainer, .yardContainer, .parContainer, .hcpContainer {
     display: flex;
-    justify-content: space-evenly;
+    /*justify-content: space-evenly;*/
     width: 98%;
     border: 1px solid #254535;
     font-size: 12px;
@@ -132,4 +129,9 @@ body {
 
 .numberModal {
     display: none;
+}
+
+.cardTitle, .in, .out, .total, .hole, .yard, .par, .hcp {
+    width: 5%;
+    border: 1px solid #254535;
 }
