@@ -35,11 +35,20 @@ function loadCourse(courseid) {
             myCourse = JSON.parse(this.responseText);
             console.log(myCourse);
 
+            loadTee();
             // $('.mainContainer').css('background-image', 'url(' + courseCollection.courses[2].image +')');
         }
     };
     xhttp.open('GET', 'https://golf-courses-api.herokuapp.com/courses/' + courseid, true);
     xhttp.send();
+}
+
+function loadTee() {
+    $('#selectTee').html('<option>Select Tee</option>');
+    let teeArray = myCourse.data.holes[0].teeBoxes;
+    for(let i = 0; i < teeArray.length; i++) {
+        $('#selectTee').append('<option value="' + i + '">' + teeArray[i].teeType + '</option>')
+    }
 }
 
 function buildCard() {

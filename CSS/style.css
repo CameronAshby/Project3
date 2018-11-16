@@ -109,3 +109,7 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+.player {
+    border: 1px solid #556B2F;
+}
