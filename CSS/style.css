@@ -51,7 +51,7 @@ body {
     color: #556B2F;
 }
 
-#startButton, #gameButton {
+#startButton, #gameButton, #modalButton {
     width: 30%;
     color: white;
     background-color: #254535;
@@ -61,7 +61,7 @@ body {
     font-size: 14px;
 }
 
-#startButton:hover, #gameButton:hover {
+#startButton:hover, #gameButton:hover, #modalButton:hover {
     cursor: pointer;
 }
 
@@ -97,7 +97,23 @@ body {
 }
 
 .gameContainer {
+    width: 90%;
     display: none;
+    justify-content: center;
+    height: 70%;
+    color: #556B2F;
+}
+
+.hole, .yard, .in, .out, .total {
+    font-size: 12px;
+}
+
+.holeContainer, .yardContainer {
+    display: flex;
+    justify-content: space-evenly;
+    width: 98%;
+    border: 1px solid #254535;
+    font-size: 12px;
 }
 
 .column {

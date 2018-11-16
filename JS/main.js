@@ -58,20 +58,40 @@ function buildCard() {
     $('.gameContainer').css('display', 'flex');
     $('.setupContainer').css('display', 'none');
 
+    buildHole();
+    buildYard();
+}
+
+function buildHole() {
     for(let i = 1; i <= 18; i++) {
-        $('.gameContainer').append(`<div class="hole">${i}</div>`);
+        $('.holeContainer').append(`<div id="hole${i}" class="hole">${i}</div>`);
+
+        if(i == 9) {
+            $('.holeContainer').append(`<div id="out" class="out">Out</div>`);
+        }
+        if(i == 18) {
+            $('.holeContainer').append(`<div id="in" class="in">In</div>`);
+            $('.holeContainer').append(`<div id="total" class="total">Total</div>`);
+        }
     }
 }
 
-function addHoles() {
-    for(let p = 1; p <= numPlayers; p++) {
-        for(let h = 1; h <= numHoles; h++) {
-            $('#col' + h).append('<input class="hole" type="text" id="p' + p + 'h' + h + '">');
+function buildYard() {
+    for(let i = 0; i < 18; i++) {
+        $('.yardContainer').append(`<div id="yard${i}" class="yard">${myCourse.data.holes[i].teeBoxes[teeSelection].yards}</div>`);
+
+        if(i == 9) {
+            $('.yardContainer').append(`<div class="out">Out</div>`);
+        }
+        if(i == 17) {
+            $('.yardContainer').append(`<div class="in">In</div>`);
+            $('.yardContainer').append(`<div class="total">Total</div>`);
         }
     }
 }
 
 function getNames(playerNum) {
+    numPlayers = Number(playerNum);
     $('.playerNameContainer').html('');
     for (let i = 1; i <= playerNum; i++) {
         $('.playerNameContainer').append(`<input onchange="checkName(this.value)" class="player" id="player${i}" type="text">`);
