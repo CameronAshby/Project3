@@ -66,8 +66,6 @@ function buildCard() {
     buildPar();
     buildHcp();
 
-
-
     buildPlayers();
 }
 
@@ -97,11 +95,15 @@ function buildYard() {
             $('.yardContainer').append(`<div id="totalYard" class="total"></div>`);
         }
     }
+
+    $(`#outYard`).append(calcOut('yard'));
+    $(`#inYard`).append(calcIn('yard'));
+    $(`#totalYard`).append(calcTotal('Yard'));
 }
 
 function buildPar() {
     for(let i = 0; i < 18; i++) {
-        $('.parContainer').append(`<div id="yard${i}" class="yard">${myCourse.data.holes[i].teeBoxes[teeSelection].par}</div>`);
+        $('.parContainer').append(`<div id="par${i}" class="par">${myCourse.data.holes[i].teeBoxes[teeSelection].par}</div>`);
 
         if(i == 8) {
             $('.parContainer').append(`<div id="outPar" class="out"></div>`);
@@ -111,11 +113,15 @@ function buildPar() {
             $('.parContainer').append(`<div id="totalPar" class="total"></div>`);
         }
     }
+
+    $(`#outPar`).append(calcOut('par'));
+    $(`#inPar`).append(calcIn('par'));
+    $(`#totalPar`).append(calcTotal('Par'));
 }
 
 function buildHcp() {
     for (let i = 0; i < 18; i++) {
-        $('.hcpContainer').append(`<div id="yard${i}" class="yard">${myCourse.data.holes[i].teeBoxes[teeSelection].hcp}</div>`);
+        $('.hcpContainer').append(`<div id="hcp${i}" class="hcp">${myCourse.data.holes[i].teeBoxes[teeSelection].hcp}</div>`);
 
         if (i == 8) {
             $('.hcpContainer').append(`<div id="outHcp" class="out"></div>`);
@@ -125,13 +131,17 @@ function buildHcp() {
             $('.hcpContainer').append(`<div id="totalHcp" class="total"></div>`);
         }
     }
+
+    $(`#outHcp`).append('-');
+    $(`#inHcp`).append('-');
+    $(`#totalHcp`).append('-');
 }
 
 function buildPlayers() {
     for (let i = 1; i <= numPlayers; i++) {
         $('.gameContainer').append(`<div id="playerContainer${i}" class="playerContainer"><div class="cardTitle">${nameArray[i-1]}</div></div>`);
         for(let p = 0; p < 18; p++) {
-            $(`#playerContainer${i}`).append(`<input id="p${i}score${p}" class="score" type="number">`);
+            $(`#playerContainer${i}`).append(`<input id="p${i}score${p}" class="score" type="text" onchange="updateScore(${i}, this.value, ${p})">`);
 
             if(p == 8) {
                 $(`#playerContainer${i}`).append(`<div id="outPlayer${i}" class="out"></div>`);
@@ -142,6 +152,60 @@ function buildPlayers() {
             }
         }
     }
+}
+
+function updateScore(playerNum, value, holeNum) {
+    console.log('getting here');
+    let outTotal = 0;
+    let tempOut = 0;
+    let inTotal = 0;
+    let tempIn = 0;
+    let finalTotal = 0;
+
+    if(holeNum < 9){
+        tempOut = Number($(`#outPlayer${playerNum}`).text());
+        outTotal += tempOut;
+        outTotal += Number(value);
+        $(`#outPlayer${playerNum}`).text(outTotal);
+    }
+    else if(holeNum >= 9){
+        tempIn = Number($(`#inPlayer${playerNum}`).text());
+        inTotal += tempIn;
+        inTotal += Number(value);
+        $(`#inPlayer${playerNum}`).text(inTotal);
+    }
+
+    outTotal = Number($(`#outPlayer${playerNum}`).text());
+    inTotal = Number($(`#inPlayer${playerNum}`).text());
+    finalTotal = outTotal + inTotal;
+    $(`#totalPlayer${playerNum}`).text(finalTotal);
+}
+
+function calcOut(rowName) {
+    let outTotal = 0;
+    let outTemp = 0;
+    for(let i = 0; i < 9; i++) {
+        outTemp = Number($(`#${rowName}${i}`).text());
+        outTotal += outTemp;
+    }
+    return outTotal;
+}
+
+function calcIn(rowName) {
+    let inTotal = 0;
+    let inTemp = 0;
+    for(let i = 9; i < 18; i++) {
+        inTemp = Number($(`#${rowName}${i}`).text());
+        inTotal += inTemp;
+    }
+    return inTotal;
+}
+
+function calcTotal(rowName) {
+    let outTotal = Number($(`#out${rowName}`).text());
+    let inTotal = Number($(`#in${rowName}`).text());
+
+    return outTotal + inTotal;
 }
 
 function storeNames() {

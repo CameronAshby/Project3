@@ -100,7 +100,7 @@ body {
     width: 90%;
     display: none;
     justify-content: center;
-    height: 70%;
+    height: 250px;
     color: #556B2F;
     text-align: center;
 }
@@ -142,6 +142,8 @@ body {
 
 .score {
     border: 0;
+    color: #556B2F;
+    text-align: center;
 }
 
 .in, .out, .total, .hole, .yard, .par, .hcp, .score{
