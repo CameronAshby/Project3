@@ -144,11 +144,11 @@ function buildPlayers() {
             $(`#playerContainer${i}`).append(`<input id="p${i}score${p}" class="score" type="number" onchange="updateScore(${i}, this.value, ${p}, this.id)">`);
 
             if(p == 8) {
-                $(`#playerContainer${i}`).append(`<div id="outPlayer${i}" class="out"></div>`);
+                $(`#playerContainer${i}`).append(`<div id="outPlayer${i}" class="out">0</div>`);
             }
             if(p == 17) {
-                $(`#playerContainer${i}`).append(`<div id="inPlayer${i}" class="in"></div>`);
-                $(`#playerContainer${i}`).append(`<div id="totalPlayer${i}" class="total"></div>`);
+                $(`#playerContainer${i}`).append(`<div id="inPlayer${i}" class="in">0</div>`);
+                $(`#playerContainer${i}`).append(`<div id="totalPlayer${i}" class="total">0</div>`);
             }
         }
     }

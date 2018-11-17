@@ -116,10 +116,6 @@ body {
     font-size: 12px;
 }
 
-.column {
-    width: 50px;
-}
-
 .playerNameContainer {
     padding-top: 10px;
     display: flex;
@@ -180,7 +176,8 @@ body {
 }
 
 .cardTitle {
-    width: 7%
+    width: 10%;
+    overflow: hidden;
 }
 
 .in, .out, .total, .hole, .yard, .par, .hcp, .score {
@@ -199,4 +196,8 @@ body {
 
 .in, .out, .total, .hole, .yard, .par, .hcp, .score{
     border-left: 1px solid #254535;
+}
+
+input {
+    padding: 0;
 }
