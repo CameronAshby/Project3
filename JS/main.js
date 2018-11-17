@@ -2,6 +2,7 @@ let courseCollection;
 
 let numPlayers;
 let teeSelection;
+let nameArray = [];
 
 let modalId;
 
@@ -55,6 +56,8 @@ function setTee(tee) {
 }
 
 function buildCard() {
+    storeNames();
+
     $('.gameContainer').css('display', 'flex');
     $('.setupContainer').css('display', 'none');
 
@@ -62,6 +65,10 @@ function buildCard() {
     buildYard();
     buildPar();
     buildHcp();
+
+
+
+    buildPlayers();
 }
 
 function buildHole() {
@@ -69,11 +76,11 @@ function buildHole() {
         $('.holeContainer').append(`<div id="hole${i}" class="hole">${i}</div>`);
 
         if(i == 9) {
-            $('.holeContainer').append(`<div id="out" class="out">Out</div>`);
+            $('.holeContainer').append(`<div id="outHole" class="out">Out</div>`);
         }
         if(i == 18) {
-            $('.holeContainer').append(`<div id="in" class="in">In</div>`);
-            $('.holeContainer').append(`<div id="total" class="total">Total</div>`);
+            $('.holeContainer').append(`<div id="inHole" class="in">In</div>`);
+            $('.holeContainer').append(`<div id="totalHole" class="total">Total</div>`);
         }
     }
 }
@@ -83,11 +90,11 @@ function buildYard() {
         $('.yardContainer').append(`<div id="yard${i}" class="yard">${myCourse.data.holes[i].teeBoxes[teeSelection].yards}</div>`);
 
         if(i == 8) {
-            $('.yardContainer').append(`<div class="out"></div>`);
+            $('.yardContainer').append(`<div id="outYard" class="out"></div>`);
         }
         if(i == 17) {
-            $('.yardContainer').append(`<div class="in"></div>`);
-            $('.yardContainer').append(`<div class="total"></div>`);
+            $('.yardContainer').append(`<div id="inYard" class="in"></div>`);
+            $('.yardContainer').append(`<div id="totalYard" class="total"></div>`);
         }
     }
 }
@@ -97,11 +104,11 @@ function buildPar() {
         $('.parContainer').append(`<div id="yard${i}" class="yard">${myCourse.data.holes[i].teeBoxes[teeSelection].par}</div>`);
 
         if(i == 8) {
-            $('.parContainer').append(`<div class="out"></div>`);
+            $('.parContainer').append(`<div id="outPar" class="out"></div>`);
         }
         if(i == 17) {
-            $('.parContainer').append(`<div class="in"></div>`);
-            $('.parContainer').append(`<div class="total"></div>`);
+            $('.parContainer').append(`<div id="inPar" class="in"></div>`);
+            $('.parContainer').append(`<div id="totalPar" class="total"></div>`);
         }
     }
 }
@@ -111,19 +118,46 @@ function buildHcp() {
         $('.hcpContainer').append(`<div id="yard${i}" class="yard">${myCourse.data.holes[i].teeBoxes[teeSelection].hcp}</div>`);
 
         if (i == 8) {
-            $('.hcpContainer').append(`<div class="out"></div>`);
+            $('.hcpContainer').append(`<div id="outHcp" class="out"></div>`);
         }
         if (i == 17) {
-            $('.hcpContainer').append(`<div class="in"></div>`);
-            $('.hcpContainer').append(`<div class="total"></div>`);
+            $('.hcpContainer').append(`<div id="inHcp" class="in"></div>`);
+            $('.hcpContainer').append(`<div id="totalHcp" class="total"></div>`);
         }
+    }
+}
+
+function buildPlayers() {
+    for (let i = 1; i <= numPlayers; i++) {
+        $('.gameContainer').append(`<div id="playerContainer${i}" class="playerContainer"><div class="cardTitle">${nameArray[i-1]}</div></div>`);
+        for(let p = 0; p < 18; p++) {
+            $(`#playerContainer${i}`).append(`<input id="p${i}score${p}" class="score" type="number">`);
+
+            if(p == 8) {
+                $(`#playerContainer${i}`).append(`<div id="outPlayer${i}" class="out"></div>`);
+            }
+            if(p == 17) {
+                $(`#playerContainer${i}`).append(`<div id="inPlayer${i}" class="in"></div>`);
+                $(`#playerContainer${i}`).append(`<div id="totalPlayer${i}" class="total"></div>`);
+            }
+        }
+    }
+}
+
+function storeNames() {
+    let playerName;
+    nameArray = [];
+
+    for(let i = 1; i <= numPlayers; i++) {
+        playerName = $(`#player${i}`).val();
+        nameArray.push(playerName);
     }
 }
 
 function getNames(playerNum) {
     numPlayers = Number(playerNum);
     $('.playerNameContainer').html('');
-    for (let i = 1; i <= playerNum; i++) {
+    for (let i = 1; i <= numPlayers; i++) {
         $('.playerNameContainer').append(`<input onchange="checkName(this.value)" class="player" id="player${i}" type="text">`);
     }
 }

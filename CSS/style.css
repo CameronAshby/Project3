@@ -105,7 +105,7 @@ body {
     text-align: center;
 }
 
-.holeContainer, .yardContainer, .parContainer, .hcpContainer {
+.holeContainer, .yardContainer, .parContainer, .hcpContainer, .playerContainer {
     margin-bottom: 5px;
     display: flex;
     width: 98%;
@@ -132,10 +132,18 @@ body {
     display: none;
 }
 
-.cardTitle, .in, .out, .total, .hole, .yard, .par, .hcp {
-    width: 5%;
+.cardTitle {
+    width: 7%
 }
 
-.in, .out, .total, .hole, .yard, .par, .hcp{
+.in, .out, .total, .hole, .yard, .par, .hcp, .score {
+    width: 4.5%;
+}
+
+.score {
+    border: 0;
+}
+
+.in, .out, .total, .hole, .yard, .par, .hcp, .score{
     border-left: 1px solid #254535;
 }
