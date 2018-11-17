@@ -28,7 +28,6 @@ function loadObject() {
 let myCourse;
 
 function loadCourse(courseid) {
-    console.log(courseid);
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if(this.readyState == 4 && this.status == 200) {
@@ -55,8 +54,6 @@ function setTee(tee) {
 }
 
 function buildCard() {
-    storeNames();
-
     $('.gameContainer').css('display', 'flex');
     $('.setupContainer').css('display', 'none');
 
@@ -140,7 +137,7 @@ function buildPlayers() {
     for (let i = 1; i <= numPlayers; i++) {
         $('.gameContainer').append(`<div id="playerContainer${i}" class="playerContainer"><div class="cardTitle">${nameArray[i-1]}</div></div>`);
         for(let p = 0; p < 18; p++) {
-            $(`#playerContainer${i}`).append(`<input id="p${i}score${p}" class="score" type="number" onchange="updateScore(${i}, this.value, ${p})">`);
+            $(`#playerContainer${i}`).append(`<input id="p${i}score${p}" class="score" type="number" onchange="updateScore(${i}, this.value, ${p}, this.id)">`);
 
             if(p == 8) {
                 $(`#playerContainer${i}`).append(`<div id="outPlayer${i}" class="out"></div>`);
@@ -153,7 +150,9 @@ function buildPlayers() {
     }
 }
 
-function updateScore(playerNum, value, holeNum) {
+function updateScore(playerNum, value, holeNum, myId) {
+    checkNumber(value, myId);
+
     let outTotal = 0;
     let tempOut = 0;
     let inTotal = 0;
@@ -207,30 +206,37 @@ function calcTotal(rowName) {
     return outTotal + inTotal;
 }
 
-function storeNames() {
-    let playerName;
-    nameArray = [];
-
-    for(let i = 1; i <= numPlayers; i++) {
-        playerName = $(`#player${i}`).val();
-        nameArray.push(playerName);
-    }
-}
-
 function getNames(playerNum) {
     numPlayers = Number(playerNum);
     $('.playerNameContainer').html('');
     for (let i = 1; i <= numPlayers; i++) {
-        $('.playerNameContainer').append(`<input onchange="checkName(this.value)" class="player" id="player${i}" type="text">`);
+        $('.playerNameContainer').append(`<input placeholder="Enter Name" onchange="checkNames(this.value, ${i}, this.id)" class="player" id="player${i}" type="text">`);
+        nameArray[i-1] = '';
     }
 }
 
-function checkName(name) {
-    console.log('checkName');
+function checkNames(name, playNum, thisId) {
+    let validate = true;
+
+    for(let i = 0; i < numPlayers; i++) {
+        if(i != playNum-1) {
+            if(nameArray[i] == name) {
+                validate = false;
+            }
+        }
+    }
+
+    if(validate) {
+        nameArray[playNum-1] = name;
+    }
+    else {
+        modalId = thisId;
+        displayNameModal()
+    }
 }
 
 function checkNumber(value, thisId) {
-    if(typeof value != 'number') {
+    if(value < 0) {
         modalId = thisId;
         displayNumModal();
     }
@@ -242,5 +248,14 @@ function displayNumModal() {
 
 function clearNumModal() {
     $('.numberModal').css('display', 'none');
+    $(`#${modalId}`).val('');
+}
+
+function displayNameModal() {
+    $('.nameModal').css('display', 'flex');
+}
+
+function clearNameModal() {
+    $('.nameModal').css('display', 'none');
     $(`#${modalId}`).val('');
 }

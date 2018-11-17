@@ -61,6 +61,10 @@ body {
     font-size: 14px;
 }
 
+.modalButton {
+    width: 50px;
+}
+
 #startButton:hover, #gameButton:hover, .modalButton:hover {
     cursor: pointer;
 }
@@ -97,7 +101,7 @@ body {
 }
 
 .gameContainer {
-    width: 90%;
+    width: 95%;
     display: none;
     justify-content: center;
     height: 250px;
@@ -108,7 +112,7 @@ body {
 .holeContainer, .yardContainer, .parContainer, .hcpContainer, .playerContainer {
     margin-bottom: 5px;
     display: flex;
-    width: 98%;
+    width: 95%;
     border: 1px solid #254535;
     border-radius: 4px;
     font-size: 12px;
@@ -128,8 +132,14 @@ body {
     border: 1px solid #556B2F;
 }
 
-.numberModal {
+.numberModal, .nameModal {
     display: none;
+    width: 100px;
+    background-color: white;
+    color: #556B2F;
+    border: 1px solid #254535;
+
+    position: absolute;
 }
 
 .cardTitle {
@@ -144,6 +154,10 @@ body {
     border: 0;
     color: #556B2F;
     text-align: center;
+}
+
+.player {
+    color: #556B2F;
 }
 
 .in, .out, .total, .hole, .yard, .par, .hcp, .score{
