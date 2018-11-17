@@ -63,6 +63,10 @@ function buildCard() {
     buildHcp();
 
     buildPlayers();
+
+    for(let i = 1; i <= numPlayers; i++) {
+        $('.scoreMessageContainer').append(`<div id="scoreModal${i}" class="scoreModal"></div>`);
+    }
 }
 
 function buildHole() {
@@ -177,6 +181,25 @@ function updateScore(playerNum, value, holeNum, myId) {
     inTotal = Number($(`#inPlayer${playerNum}`).text());
     let finalTotal = outTotal + inTotal;
     $(`#totalPlayer${playerNum}`).text(finalTotal);
+
+    if($(`#p${playerNum}score${17}`).val()) {
+        compareToPar(playerNum, finalTotal);
+    }
+}
+
+function compareToPar(playerNum, playerTotal) {
+    $('.scoreMessageContainer').css('display', 'flex');
+    let holePar = Number($('#totalPar').text());
+    let comparePar = playerTotal - holePar;
+
+    if(comparePar < 0) {
+        $(`#scoreModal${playerNum}`).css('display', 'flex');
+        $(`#scoreModal${playerNum}`).html(`<div id="scoreMessage${playerNum}">Great Job ${nameArray[playerNum-1]}! <br> Score: ${comparePar}</div>`);
+    }
+    else {
+        $(`#scoreModal${playerNum}`).css('display', 'flex');
+        $(`#scoreModal${playerNum}`).html(`<div id="scoreMessage${playerNum}">Next Time ${nameArray[playerNum-1]}! <br> Score: +${comparePar}</div>`);
+    }
 }
 
 function calcOut(rowName) {
