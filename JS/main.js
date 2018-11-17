@@ -36,7 +36,6 @@ function loadCourse(courseid) {
             console.log(myCourse);
 
             loadTee();
-            // $('.mainContainer').css('background-image', 'url(' + courseCollection.courses[2].image +')');
         }
     };
     xhttp.open('GET', 'https://golf-courses-api.herokuapp.com/courses/' + courseid, true);
@@ -141,7 +140,7 @@ function buildPlayers() {
     for (let i = 1; i <= numPlayers; i++) {
         $('.gameContainer').append(`<div id="playerContainer${i}" class="playerContainer"><div class="cardTitle">${nameArray[i-1]}</div></div>`);
         for(let p = 0; p < 18; p++) {
-            $(`#playerContainer${i}`).append(`<input id="p${i}score${p}" class="score" type="text" onchange="updateScore(${i}, this.value, ${p})">`);
+            $(`#playerContainer${i}`).append(`<input id="p${i}score${p}" class="score" type="number" onchange="updateScore(${i}, this.value, ${p})">`);
 
             if(p == 8) {
                 $(`#playerContainer${i}`).append(`<div id="outPlayer${i}" class="out"></div>`);
@@ -155,29 +154,29 @@ function buildPlayers() {
 }
 
 function updateScore(playerNum, value, holeNum) {
-    console.log('getting here');
     let outTotal = 0;
     let tempOut = 0;
     let inTotal = 0;
     let tempIn = 0;
-    let finalTotal = 0;
 
     if(holeNum < 9){
-        tempOut = Number($(`#outPlayer${playerNum}`).text());
-        outTotal += tempOut;
-        outTotal += Number(value);
-        $(`#outPlayer${playerNum}`).text(outTotal);
+        for(let o = 0; o < 9; o++) {
+            tempOut = Number($(`#p${playerNum}score${o}`).val());
+            outTotal += tempOut;
+        }
+        $(`#outPlayer${playerNum}`).html(outTotal);
     }
     else if(holeNum >= 9){
-        tempIn = Number($(`#inPlayer${playerNum}`).text());
-        inTotal += tempIn;
-        inTotal += Number(value);
-        $(`#inPlayer${playerNum}`).text(inTotal);
+        for(let i = 9; i < 18; i++) {
+            tempIn = Number($(`#p${playerNum}score${i}`).val());
+            inTotal += tempIn;
+        }
+        $(`#inPlayer${playerNum}`).html(inTotal);
     }
 
     outTotal = Number($(`#outPlayer${playerNum}`).text());
     inTotal = Number($(`#inPlayer${playerNum}`).text());
-    finalTotal = outTotal + inTotal;
+    let finalTotal = outTotal + inTotal;
     $(`#totalPlayer${playerNum}`).text(finalTotal);
 }
 
@@ -230,18 +229,18 @@ function checkName(name) {
     console.log('checkName');
 }
 
-function checkNumber(number, thisId) {
-    if(typeof number != 'number') {
+function checkNumber(value, thisId) {
+    if(typeof value != 'number') {
         modalId = thisId;
-        displayModal();
+        displayNumModal();
     }
 }
 
-function displayModal() {
+function displayNumModal() {
     $('.numberModal').css('display', 'flex');
 }
 
-function clearModal() {
+function clearNumModal() {
     $('.numberModal').css('display', 'none');
     $(`#${modalId}`).val('');
 }

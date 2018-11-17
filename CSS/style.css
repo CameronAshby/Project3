@@ -51,7 +51,7 @@ body {
     color: #556B2F;
 }
 
-#startButton, #gameButton, #modalButton {
+#startButton, #gameButton, .modalButton {
     width: 30%;
     color: white;
     background-color: #254535;
@@ -61,7 +61,7 @@ body {
     font-size: 14px;
 }
 
-#startButton:hover, #gameButton:hover, #modalButton:hover {
+#startButton:hover, #gameButton:hover, .modalButton:hover {
     cursor: pointer;
 }
 
