@@ -192,7 +192,11 @@ function compareToPar(playerNum, playerTotal) {
     let holePar = Number($('#totalPar').text());
     let comparePar = playerTotal - holePar;
 
-    if(comparePar < 0) {
+    if(comparePar == 0) {
+        $(`#scoreModal${playerNum}`).css('display', 'flex');
+        $(`#scoreModal${playerNum}`).html(`<div id="scoreMessage${playerNum}">Right On Par ${nameArray[playerNum-1]}! <br> Score: ${comparePar}</div>`);
+    }
+    else if(comparePar < 0) {
         $(`#scoreModal${playerNum}`).css('display', 'flex');
         $(`#scoreModal${playerNum}`).html(`<div id="scoreMessage${playerNum}">Great Job ${nameArray[playerNum-1]}! <br> Score: ${comparePar}</div>`);
     }
